@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
 
-// Middleware
+
 app.use(cors())
 app.use(express.json())
 
@@ -17,7 +17,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// POST /api/gaze-input - Unity sends gaze data
+// POST /api/gaze-input, Unity sends gaze data
 app.post('/api/gaze-input', async (req, res) => {
   try {
     const { gaze_data, reflection } = req.body
@@ -39,7 +39,7 @@ app.post('/api/gaze-input', async (req, res) => {
   }
 })
 
-// GET /api/latest-journal - Unity gets latest AI consciousness
+// GET /api/latest-journal, Unity gets latest AI consciousness
 app.get('/api/latest-journal', async (req, res) => {
   try {
     const journals = await sql`
@@ -59,7 +59,7 @@ app.get('/api/latest-journal', async (req, res) => {
   }
 })
 
-// POST /api/trigger-agent - Unity triggers AI processing
+// POST /api/trigger-agent, Unity triggers AI processing
 app.post('/api/trigger-agent', async (req, res) => {
   try {
     // Get latest gaze inputs
